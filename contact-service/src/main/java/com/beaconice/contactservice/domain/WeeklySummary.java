@@ -18,5 +18,5 @@ import java.util.List;
 @Document
 public class WeeklySummary {
     //@ApiModelProperty(notes = "Weekly summery", required = true)
-    private List<EachWeek> weeklySummery;
+    private EachWeek weeklySummery;
 }

@@ -10,10 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @ToString
-@QueryEntity
-@Document
+
 public class Emergency {
     //@ApiModelProperty(notes = "Emergency contact -first contact", required = true)
     private EmergencyContact emergencyContact1;

@@ -10,10 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @ToString
-@QueryEntity
-@Document
+
 public class EachDay {
 
     //@ApiModelProperty(notes = "Each day - start time", required = true)

@@ -20,5 +20,5 @@ public class DaysOff {
     private Integer vacation;
 
     //@ApiModelProperty(notes = "Days Off - float", required = true)
-    private Integer floatDays;
+    private Integer floatDay;
 }

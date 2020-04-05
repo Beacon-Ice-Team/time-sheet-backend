@@ -12,13 +12,17 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @ToString
-@QueryEntity
-@Document
+
 public class TimeSheet {
 
     //@ApiModelProperty(notes = "time sheet each day", required = true)
-    private List<EachDay> timeSheet;
+    private EachDay sunday;
+    private EachDay monday;
+    private EachDay tuesday;
+    private EachDay wednesday;
+    private EachDay thursday;
+    private EachDay friday;
+    private EachDay saturday;
 
 }

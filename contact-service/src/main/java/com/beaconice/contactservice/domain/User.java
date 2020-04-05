@@ -15,7 +15,8 @@ import java.util.List;
 @Builder
 @ToString
 @QueryEntity
-@Document
+@Data
+@Document(collection = "TimeSheetManagement")
 public class User {
     @Id
     //@ApiModelProperty(notes = "The database generated user ID")
@@ -28,7 +29,7 @@ public class User {
     //@ApiModelProperty(notes = "User -name", required = true)
     private String name;
     //@ApiModelProperty(notes = "User -weekly summary", required = true)
-    private WeeklySummary weeklySummary;
+    private Object weeklySummary;
     //@ApiModelProperty(notes = "User -time sheet", required = true)
     private TimeSheet timeSheet;
     //@ApiModelProperty(notes = "User -contact", required = true)
