@@ -47,6 +47,32 @@ public class ContactController {
         return user.getEmergency();
     }
 
+    @PostMapping("/updateContact")
+    public Contact updateContact(@RequestBody Request request) { //testing get from backend
+        String username = request.getUsername();
+        System.out.println(username);
+        User user = userRepository.findByUsername(username);
+        Contact contact = request.getContact();
+        System.out.println(contact);
+        User newUser = userRepository.UpdateContact(user,contact);
+        userRepository.save(newUser);
+        return newUser.getContact();
+    }
+
+    @PostMapping("/updateEmergencyContact")
+    public Emergency updateEmergencyContact(@RequestBody Request request) { //testing get from backend
+        String username = request.getUsername();
+        System.out.println(username);
+        User user = userRepository.findByUsername(username);
+        Emergency emergency = request.getEmergency();
+        System.out.println(emergency);
+        User newUser = userRepository.UpdateEmergencyContact(user,emergency);
+        userRepository.save(newUser);
+        return newUser.getEmergency();
+    }
+
+
+
 //    @RequestMapping(value = "/", method = RequestMethod.GET)
 //    public List<User> getAllUser() {
 //        return userRepository.findAll();

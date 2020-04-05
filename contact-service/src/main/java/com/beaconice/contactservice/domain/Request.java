@@ -11,5 +11,6 @@ import lombok.Setter;
 public class Request {
 
     private String username;
-
+    private Contact contact;
+    private Emergency emergency;
 }
