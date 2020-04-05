@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 public class Emergency {
     //@ApiModelProperty(notes = "Emergency contact -first contact", required = true)
-    private EmergencyContact emergencyContact1;
+    private EmergencyContact contact1;
     //@ApiModelProperty(notes = "Emergency contact -second contact")
-    private EmergencyContact emergencyContact2;
+    private EmergencyContact contact2;
 }

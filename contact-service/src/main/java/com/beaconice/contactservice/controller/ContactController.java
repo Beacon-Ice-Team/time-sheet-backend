@@ -1,5 +1,7 @@
 package com.beaconice.contactservice.controller;
 
+import com.beaconice.contactservice.domain.Contact;
+import com.beaconice.contactservice.domain.Emergency;
 import com.beaconice.contactservice.domain.User;
 import com.beaconice.contactservice.domain.Request;
 import com.beaconice.contactservice.repository.UserRepository;
@@ -25,6 +27,24 @@ public class ContactController {
 
         List<User> userList = userRepository.findAll();
         return userList;
+    }
+
+    @PostMapping("/getContact")
+    public Contact getContact(@RequestBody Request request) { //testing get from backend
+        String username = request.getUsername();
+        System.out.println(username);
+        User user = userRepository.findByUsername(username);
+        System.out.println(user.getContact());
+        return user.getContact();
+    }
+
+    @PostMapping("/getEmergency")
+    public Emergency getEmergency(@RequestBody Request request) { //testing get from backend
+        String username = request.getUsername();
+        System.out.println(username);
+        User user = userRepository.findByUsername(username);
+        System.out.println(user.getEmergency());
+        return user.getEmergency();
     }
 
 //    @RequestMapping(value = "/", method = RequestMethod.GET)
