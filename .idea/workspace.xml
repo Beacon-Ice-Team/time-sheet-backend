@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09e72840-ecdd-4b2d-a935-8034c507f84f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/time-sheet-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/time-sheet-backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,12 +21,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/timesheet-service" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ED548\Desktop\time sheet\time-sheet-backend\timesheet-service\src\main\java\com\beaconice\timesheetservice\config" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -39,7 +45,7 @@
       <option name="presentableId" value="Default" />
       <updated>1586024482908</updated>
       <workItem from="1586024494898" duration="124000" />
-      <workItem from="1586025239633" duration="536000" />
+      <workItem from="1586025887414" duration="1830000" />
     </task>
     <servers />
   </component>
@@ -47,22 +53,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="183" y="111" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586025746862">
-      <screen x="52" y="0" width="1388" height="900" />
-    </state>
-    <state x="183" y="111" key="#com.intellij.execution.impl.EditConfigurationsDialog/52.0.1388.900@52.0.1388.900" timestamp="1586025746862" />
-    <state x="456" y="239" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586025742369">
-      <screen x="52" y="0" width="1388" height="900" />
-    </state>
-    <state x="456" y="239" key="#com.intellij.ide.util.TreeClassChooserDialog/52.0.1388.900@52.0.1388.900" timestamp="1586025742369" />
-    <state x="587" y="155" key="FileChooserDialogImpl" timestamp="1586024572754">
+    <state x="587" y="155" key="FileChooserDialogImpl" timestamp="1586028723764">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="587" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586024572754" />
-    <state x="207" y="30" key="SettingsEditor" timestamp="1586025764097">
-      <screen x="52" y="0" width="1388" height="900" />
+    <state x="587" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586028723764" />
+    <state x="433" y="101" width="681" height="601" key="NewModule_or_Project.wizard" timestamp="1586028694006">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="207" y="30" key="SettingsEditor/52.0.1388.900@52.0.1388.900" timestamp="1586025764097" />
+    <state x="433" y="101" width="681" height="601" key="NewModule_or_Project.wizard/0.0.1536.824@0.0.1536.824" timestamp="1586028694006" />
+    <state x="221" y="0" key="SettingsEditor" timestamp="1586028712207">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="221" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1586028712207" />
+    <state x="458" y="293" key="chooseDestDirectoryDialog" timestamp="1586028446499">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="458" y="293" key="chooseDestDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1586028446499" />
     <state x="503" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1586024496691">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
