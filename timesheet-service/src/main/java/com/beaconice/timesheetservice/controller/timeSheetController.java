@@ -24,16 +24,16 @@ public class timeSheetController {
     }
 
     @PostMapping("/default")
-    public TimeSheetManagement getDefaultWeekByUsername(@RequestBody TimeSheetManagement timeSheetManagement) { //testing get from backend
+    public TimeSheet getDefaultWeekByUsername(@RequestBody TimeSheetManagement timeSheetManagement) { //testing get from backend
         System.out.println("going to mongo");
         TimeSheetManagement user = timeSheetRepository.findByUsername(timeSheetManagement.getUsername()).orElse(null);
-//        TimeSheet defaultWeek = user.getTimeSheet();
-        return user;
+        TimeSheet defaultWeek = user.getTimeSheet();
+        return defaultWeek;
     }
 
     @PostMapping("/update")
     public TimeSheet changeDefaultWeekByUsername(@RequestBody TimeSheetManagement timeSheetManagement) { //testing get from backend
-        System.out.println("going to mongo");
+        System.out.println("updating mongo");
         TimeSheetManagement user = timeSheetRepository.findByUsername(timeSheetManagement.getUsername()).orElse(null);
         user.setTimeSheet(timeSheetManagement.getTimeSheet());
         timeSheetRepository.save(user);

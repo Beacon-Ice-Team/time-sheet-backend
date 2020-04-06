@@ -26,15 +26,15 @@ public class TimeSheetManagement {
 
     private String name;
 
-    private Object weeklySummary;
+    private List<WeeklySummary> weeklySummary;
 
     private TimeSheet timeSheet;
 
-    private Contact contact;
+    private Object contact;
 
-    private Emergency emergency;
+    private Object emergency;
 
-    private DaysOff daysOff;
+    private Object daysOff;
 
 
 
