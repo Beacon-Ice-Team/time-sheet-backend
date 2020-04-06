@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: contact-info
+  data:
+    mongodb:
+      uri: mongodb+srv://Mia:0Ag8aomLDypfQUiG@time-sheet-cluster-foqwp.mongodb.net/test?retryWrites=true&w=majority
+      database: Project
+server:
+  port: 9003
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
