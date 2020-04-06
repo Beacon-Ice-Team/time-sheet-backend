@@ -1,0 +1,14 @@
+spring:
+    application:
+        name: timesheet
+    data:
+        mongodb:
+            uri: mongodb+srv://edward:adminadmin2@time-sheet-cluster-foqwp.mongodb.net/test?retryWrites=true&w=majority
+            database: Project
+server:
+    port: 9001
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
