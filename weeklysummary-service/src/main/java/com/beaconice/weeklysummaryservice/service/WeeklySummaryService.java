@@ -1,7 +1,11 @@
 package com.beaconice.weeklysummaryservice.service;
 
+import com.beaconice.weeklysummaryservice.domain.WeeklySummaryRecord;
+
+import java.util.List;
+
 public interface WeeklySummaryService {
 
-    void getWeeklySummary();
+    List<WeeklySummaryRecord> getWeeklySummary(String username);
 
 }

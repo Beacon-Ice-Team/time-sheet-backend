@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class WeeklySummary {
 
-    private String date;
+    private String weekEnding;
 
     private int hours;
 

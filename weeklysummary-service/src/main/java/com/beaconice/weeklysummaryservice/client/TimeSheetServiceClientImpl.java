@@ -1,7 +1,7 @@
 //package com.beaconice.weeklysummaryservice.client.impl;
 
 //import com.beaconice.weeklysummaryservice.client.TimeSheetServiceClient;
-//import com.beaconice.weeklysummaryservice.domain.TimeSheetResponse;
+//import com.beaconice.weeklysummaryservice.common.TimeSheetResponse;
 //
 //import java.util.ArrayList;
 //import java.util.List;

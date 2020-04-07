@@ -1,4 +1,4 @@
-package com.beaconice.weeklysummaryservice.domain;
+package com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TimeSheetRequest {
+public class TimeSheetPostRequest {
 
     private String username;
 
