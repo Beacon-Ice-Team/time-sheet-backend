@@ -31,7 +31,7 @@ public class User {
     //@ApiModelProperty(notes = "User -weekly summary", required = true)
     private Object weeklySummary;
     //@ApiModelProperty(notes = "User -time sheet", required = true)
-    private TimeSheet timeSheet;
+    private Object timeSheet;
     //@ApiModelProperty(notes = "User -contact", required = true)
     private Contact contact;
     //@ApiModelProperty(notes = "User -emergency", required = true)
