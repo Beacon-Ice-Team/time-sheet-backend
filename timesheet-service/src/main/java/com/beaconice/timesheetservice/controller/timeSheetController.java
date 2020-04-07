@@ -1,6 +1,7 @@
 package com.beaconice.timesheetservice.controller;
 
 
+import com.beaconice.timesheetservice.client.SummaryClient;
 import com.beaconice.timesheetservice.entity.mongodoc.TimeSheet;
 import com.beaconice.timesheetservice.entity.mongodoc.TimeSheetManagement;
 import com.beaconice.timesheetservice.repository.TimeSheetRepository;
@@ -17,10 +18,16 @@ import java.util.Optional;
 public class timeSheetController {
 
     private TimeSheetRepository timeSheetRepository;
+    private SummaryClient summaryClient;
 
     @Autowired
     public void setTimeSheetRepository(TimeSheetRepository timeSheetRepository) {
         this.timeSheetRepository = timeSheetRepository;
+    }
+
+    @Autowired
+    public void setSummaryClient(SummaryClient summaryClient) {
+        this.summaryClient = summaryClient;
     }
 
     @PostMapping("/default")
@@ -39,5 +46,10 @@ public class timeSheetController {
         timeSheetRepository.save(user);
         TimeSheet newDefaultWeek = user.getTimeSheet();
         return newDefaultWeek;
+    }
+
+    @GetMapping("/test")
+    public void updateWeeklySummary() {
+        summaryClient.saveTimeSheetWeek();
     }
 }
