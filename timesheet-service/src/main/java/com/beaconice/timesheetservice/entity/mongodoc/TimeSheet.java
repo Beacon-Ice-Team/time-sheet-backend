@@ -1,17 +1,15 @@
 package com.beaconice.timesheetservice.entity.mongodoc;
 
-import com.beaconice.timesheetservice.entity.Day;
+import com.beaconice.timesheetservice.domain.Day;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 
 public class TimeSheet {

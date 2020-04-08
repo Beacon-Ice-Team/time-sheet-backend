@@ -1,9 +1,12 @@
 package com.beaconice.timesheetservice.entity.mongodoc;
 
+import com.beaconice.timesheetservice.domain.Day;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,5 +25,6 @@ public class WeeklySummary {
 
     private String comment;
 
-    private TimeSheet timeSheet;
+    private List<Day> timeSheet;
+//    private TimeSheet timeSheet;
 }

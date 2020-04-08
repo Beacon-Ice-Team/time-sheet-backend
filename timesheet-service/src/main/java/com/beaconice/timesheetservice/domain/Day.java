@@ -1,4 +1,4 @@
-package com.beaconice.timesheetservice.entity;
+package com.beaconice.timesheetservice.domain;
 
 
 import lombok.AllArgsConstructor;
