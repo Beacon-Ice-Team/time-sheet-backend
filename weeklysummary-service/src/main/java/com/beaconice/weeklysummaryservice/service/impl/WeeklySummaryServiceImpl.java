@@ -99,7 +99,7 @@ public class WeeklySummaryServiceImpl implements WeeklySummaryService {
     public List<Day> postFeignTimeSheet(String username) {
         TimeSheetManagement timeSheetManagement = timeSheetManagementRepository.findByUsername(username).orElse(null);
 
-        return (timeSheetManagement != null) ? timeSheetManagement.getTimeSheet() : null;
+        return (timeSheetManagement != null) ? timeSheetManagement.getWeeklySummaryList().get(0).getTimeSheet() : null;
     }
 
 }

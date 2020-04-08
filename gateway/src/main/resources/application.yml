@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: summary
+          uri: lb://summary
+          predicates:
+            - Path=/time-sheet-management/**
+        - id: timesheet
+          uri: lb://timesheet
+          predicates:
+            - Path=/time-sheet/**
+        - id: contact-info
+          uri: lb://contact-info
+          predicates:
+            - Path=/users/**

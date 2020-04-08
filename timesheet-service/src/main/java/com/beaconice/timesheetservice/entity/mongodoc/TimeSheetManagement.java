@@ -1,6 +1,6 @@
 package com.beaconice.timesheetservice.entity.mongodoc;
 
-import com.beaconice.timesheetservice.entity.Day;
+import com.beaconice.timesheetservice.domain.Day;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -28,7 +28,8 @@ public class TimeSheetManagement {
 
     private List<WeeklySummary> weeklySummary;
 
-    private TimeSheet timeSheet;
+//    private TimeSheet timeSheet;
+    private List<Day> timeSheet;
 
     private Object contact;
 
