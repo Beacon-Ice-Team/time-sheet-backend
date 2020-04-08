@@ -25,7 +25,7 @@ public class TimeSheetManagement {
 
     private String name;
 
-    private List<WeeklySummary> weeklySummaryList;
+    private List<WeeklySummary> weeklySummary;
 
     private List<Day> timeSheet;
 

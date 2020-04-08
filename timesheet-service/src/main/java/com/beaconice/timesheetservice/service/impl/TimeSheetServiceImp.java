@@ -42,6 +42,7 @@ public class TimeSheetServiceImp implements TimeSheetService {
         ToWeeklySummaryPostRequest weeklySummaryPostRequest = ToWeeklySummaryPostRequest.builder().username(username).build();
         FromWeeklySummaryPostResponse response = client.getTimeSheetWeek(weeklySummaryPostRequest);
         List<Day> timeSheet = response.getTimeSheet();
+        System.out.println(timeSheet);
         return timeSheet;
     }
 

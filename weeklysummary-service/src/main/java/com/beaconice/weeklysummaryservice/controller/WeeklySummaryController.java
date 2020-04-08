@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
-@RestController(value = "/time-sheet-management")
+@RestController
+@RequestMapping("/time-sheet")
 @Api("Weekly Summary Controller")
 public class WeeklySummaryController {
 
@@ -42,12 +43,11 @@ public class WeeklySummaryController {
     }
 
     @PostMapping(value = "/feign-time-sheet")
-    public @ResponseBody SendTimeSheetPostResponse postFeignTimeSheet(@RequestBody SendTimeSheetPostRequest sendTimeSheetPostRequest){
+    public SendTimeSheetPostResponse postFeignTimeSheet(@RequestBody SendTimeSheetPostRequest sendTimeSheetPostRequest){
         SendTimeSheetPostResponse sendTimeSheetPostResponse = new SendTimeSheetPostResponse();
         String username = sendTimeSheetPostRequest.getUsername();
         List<Day> dayList = weeklySummaryService.postFeignTimeSheet(username);
-        sendTimeSheetPostResponse.setDayList(dayList);
-        System.out.println(dayList.get(0));
+        sendTimeSheetPostResponse.setTimeSheet(dayList);
         return sendTimeSheetPostResponse;
     }
 

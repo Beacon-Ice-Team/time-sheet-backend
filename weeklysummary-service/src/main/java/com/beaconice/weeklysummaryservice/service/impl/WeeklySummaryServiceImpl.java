@@ -52,9 +52,9 @@ public class WeeklySummaryServiceImpl implements WeeklySummaryService {
         List<Day> dayList = receiveTimeSheetPostResponse.getDayList();
 
         if (timeSheetManagement != null) {
-            List<WeeklySummary> weeklySummaryList = timeSheetManagement.getWeeklySummaryList();
+            List<WeeklySummary> weeklySummaryList = timeSheetManagement.getWeeklySummary();
 
-            for (WeeklySummary weeklySummary : weeklySummaryList){
+            for (WeeklySummary weeklySummary : weeklySummaryList) {
                 WeeklySummaryRecord weeklySummaryRecord = WeeklySummaryRecord.builder()
                         .weekEnding(weeklySummary.getWeekEnding())
                         .totalHours(weeklySummary.getHours())
@@ -66,7 +66,7 @@ public class WeeklySummaryServiceImpl implements WeeklySummaryService {
             }
         }
 
-        WeeklySummaryRecord weeklySummaryRecord = weeklySummaryRecordList.get(weeklySummaryRecordList.size()-1);
+        WeeklySummaryRecord weeklySummaryRecord = weeklySummaryRecordList.get(weeklySummaryRecordList.size() - 1);
         if (weeklySummaryRecord.getSubmissionStatus() != NOT_STARTED.getStr()) {
             String weekEnding = weeklySummaryRecord.getWeekEnding();
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -98,8 +98,14 @@ public class WeeklySummaryServiceImpl implements WeeklySummaryService {
     @Override
     public List<Day> postFeignTimeSheet(String username) {
         TimeSheetManagement timeSheetManagement = timeSheetManagementRepository.findByUsername(username).orElse(null);
+        if (timeSheetManagement != null) {
+            List<WeeklySummary> weeklySummaryList = timeSheetManagement.getWeeklySummary();
+            WeeklySummary weeklySummary = weeklySummaryList.get(weeklySummaryList.size() - 1);
+            return weeklySummary.getTimeSheet();
+        } else {
+            return null;
+        }
 
-        return (timeSheetManagement != null) ? timeSheetManagement.getWeeklySummaryList().get(0).getTimeSheet() : null;
     }
 
 }
