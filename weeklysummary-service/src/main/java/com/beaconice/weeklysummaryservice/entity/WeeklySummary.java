@@ -1,6 +1,9 @@
 package com.beaconice.weeklysummaryservice.entity;
 
+import com.beaconice.weeklysummaryservice.domain.common.Day;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,5 +25,7 @@ public class WeeklySummary {
     private String submissionTag;
 
     private String commentTag;
+
+    private List<Day> timeSheet;
 
 }
