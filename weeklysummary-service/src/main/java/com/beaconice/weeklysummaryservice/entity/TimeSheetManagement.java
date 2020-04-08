@@ -1,5 +1,6 @@
 package com.beaconice.weeklysummaryservice.entity;
 
+import com.beaconice.weeklysummaryservice.domain.common.Day;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,7 +27,7 @@ public class TimeSheetManagement {
 
     private List<WeeklySummary> weeklySummaryList;
 
-    private Object timeSheet;
+    private List<Day> timeSheet;
 
     private Object contact;
 

@@ -1,8 +1,8 @@
 package com.beaconice.weeklysummaryservice.service.impl;
 
 import com.beaconice.weeklysummaryservice.client.TimeSheetServiceClient;
-import com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain.TimeSheetPostRequest;
-import com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain.TimeSheetPostResponse;
+import com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain.ReceiveTimeSheetPostRequest;
+import com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain.ReceiveTimeSheetPostResponse;
 import com.beaconice.weeklysummaryservice.domain.WeeklySummaryRecord;
 import com.beaconice.weeklysummaryservice.domain.common.Day;
 import com.beaconice.weeklysummaryservice.entity.TimeSheetManagement;
@@ -45,11 +45,11 @@ public class WeeklySummaryServiceImpl implements WeeklySummaryService {
         List<WeeklySummaryRecord> weeklySummaryRecordList = new ArrayList<>();
         TimeSheetManagement timeSheetManagement = timeSheetManagementRepository.findByUsername(username).orElse(null);
 
-        TimeSheetPostRequest timeSheetPostRequest = TimeSheetPostRequest.builder()
+        ReceiveTimeSheetPostRequest receiveTimeSheetPostRequest = ReceiveTimeSheetPostRequest.builder()
                 .username(username)
                 .build();
-        TimeSheetPostResponse timeSheetPostResponse = timeSheetServiceClient.getTimeSheets(timeSheetPostRequest);
-        List<Day> dayList = timeSheetPostResponse.getDayList();
+        ReceiveTimeSheetPostResponse receiveTimeSheetPostResponse = timeSheetServiceClient.getTimeSheets(receiveTimeSheetPostRequest);
+        List<Day> dayList = receiveTimeSheetPostResponse.getDayList();
 
         if (timeSheetManagement != null) {
             List<WeeklySummary> weeklySummaryList = timeSheetManagement.getWeeklySummaryList();
@@ -93,6 +93,13 @@ public class WeeklySummaryServiceImpl implements WeeklySummaryService {
         }
 
         return weeklySummaryRecordList;
+    }
+
+    @Override
+    public List<Day> postFeignTimeSheet(String username) {
+        TimeSheetManagement timeSheetManagement = timeSheetManagementRepository.findByUsername(username).orElse(null);
+
+        return (timeSheetManagement != null) ? timeSheetManagement.getTimeSheet() : null;
     }
 
 }
