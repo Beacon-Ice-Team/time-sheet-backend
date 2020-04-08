@@ -11,7 +11,7 @@ public interface TimeSheetService {
 
     ToWeeklySummaryPostResponse getDefaultTimeSheet(FromWeeklySummaryPostRequest fromWeeklySummaryPostRequest);
 
-    TimeSheet showWeeklyTimeSheet(String username);
+    List<Day> showWeeklyTimeSheet(String username);
 
     TimeSheet getWeek(String username, String weekEnding);
 

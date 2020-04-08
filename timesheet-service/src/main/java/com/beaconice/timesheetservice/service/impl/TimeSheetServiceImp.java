@@ -38,10 +38,10 @@ public class TimeSheetServiceImp implements TimeSheetService {
     }
 
     @Override
-    public TimeSheet showWeeklyTimeSheet(String username) {
+    public List<Day> showWeeklyTimeSheet(String username) {
         ToWeeklySummaryPostRequest weeklySummaryPostRequest = ToWeeklySummaryPostRequest.builder().username(username).build();
         FromWeeklySummaryPostResponse response = client.getTimeSheetWeek(weeklySummaryPostRequest);
-        TimeSheet timeSheet = response.getTimeSheet();
+        List<Day> timeSheet = response.getTimeSheet();
         return timeSheet;
     }
 

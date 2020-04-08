@@ -47,6 +47,7 @@ public class WeeklySummaryController {
         String username = sendTimeSheetPostRequest.getUsername();
         List<Day> dayList = weeklySummaryService.postFeignTimeSheet(username);
         sendTimeSheetPostResponse.setDayList(dayList);
+        System.out.println(dayList.get(0));
         return sendTimeSheetPostResponse;
     }
 

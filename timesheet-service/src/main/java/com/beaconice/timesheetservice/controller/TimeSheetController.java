@@ -2,10 +2,7 @@ package com.beaconice.timesheetservice.controller;
 
 
 import com.beaconice.timesheetservice.client.SummaryClient;
-import com.beaconice.timesheetservice.domain.FromWeeklySummaryPostRequest;
-import com.beaconice.timesheetservice.domain.SubmitTimeSheetRequest;
-import com.beaconice.timesheetservice.domain.TimeSheetGetResponse;
-import com.beaconice.timesheetservice.domain.ToWeeklySummaryPostResponse;
+import com.beaconice.timesheetservice.domain.*;
 import com.beaconice.timesheetservice.entity.mongodoc.TimeSheet;
 import com.beaconice.timesheetservice.entity.mongodoc.TimeSheetManagement;
 import com.beaconice.timesheetservice.repository.TimeSheetRepository;
@@ -16,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/time-sheet")
@@ -66,8 +64,8 @@ public class TimeSheetController {
 
         TimeSheetGetResponse timeSheetGetResponse = new TimeSheetGetResponse();
 
-        TimeSheet timeSheet = timeSheetServiceImpl.showWeeklyTimeSheet(username);
-
+        List<Day> timeSheet = timeSheetServiceImpl.showWeeklyTimeSheet(username);
+        System.out.println(timeSheet);
         timeSheetGetResponse.setTimeSheet(timeSheet);
 
         return responseEntity.ok().body(timeSheetGetResponse);

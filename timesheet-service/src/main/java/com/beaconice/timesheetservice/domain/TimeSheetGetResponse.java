@@ -12,5 +12,5 @@ import java.util.List;
 @AllArgsConstructor
 
 public class TimeSheetGetResponse {
-    private TimeSheet timeSheet;
+    private List<Day> timeSheet;
 }
