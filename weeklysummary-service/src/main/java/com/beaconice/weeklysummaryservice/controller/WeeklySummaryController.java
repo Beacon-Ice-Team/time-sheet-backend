@@ -1,19 +1,21 @@
 package com.beaconice.weeklysummaryservice.controller;
 
+import com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain.SendTimeSheetPostRequest;
+import com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain.SendTimeSheetPostResponse;
 import com.beaconice.weeklysummaryservice.domain.WeeklySummaryGetResponse;
 import com.beaconice.weeklysummaryservice.domain.WeeklySummaryRecord;
+import com.beaconice.weeklysummaryservice.domain.common.Day;
 import com.beaconice.weeklysummaryservice.service.WeeklySummaryService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
-@RestController(value = "/time-sheet")
+@RestController(value = "/time-sheet-management")
 @Api("Weekly Summary Controller")
 public class WeeklySummaryController {
 
@@ -37,6 +39,15 @@ public class WeeklySummaryController {
         .body(weeklySummaryGetResponse);
 
         return responseEntity;
+    }
+
+    @PostMapping(value = "/feign-time-sheet")
+    public @ResponseBody SendTimeSheetPostResponse postFeignTimeSheet(@RequestBody SendTimeSheetPostRequest sendTimeSheetPostRequest){
+        SendTimeSheetPostResponse sendTimeSheetPostResponse = new SendTimeSheetPostResponse();
+        String username = sendTimeSheetPostRequest.getUsername();
+        List<Day> dayList = weeklySummaryService.postFeignTimeSheet(username);
+        sendTimeSheetPostResponse.setDayList(dayList);
+        return sendTimeSheetPostResponse;
     }
 
 }

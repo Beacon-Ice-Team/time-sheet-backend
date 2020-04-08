@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TimeSheetPostRequest {
+public class ReceiveTimeSheetPostRequest {
 
     private String username;
 

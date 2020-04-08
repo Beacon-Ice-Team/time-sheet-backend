@@ -1,7 +1,7 @@
 package com.beaconice.weeklysummaryservice.client;
 
-import com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain.TimeSheetPostRequest;
-import com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain.TimeSheetPostResponse;
+import com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain.ReceiveTimeSheetPostRequest;
+import com.beaconice.weeklysummaryservice.domain.TimeSheetServiceDomain.ReceiveTimeSheetPostResponse;
 import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +12,6 @@ public interface TimeSheetServiceClient {
 
     @RequestLine("POST")
     @RequestMapping(value = "/time-sheet/default", consumes = "application/json", produces = "application/json")
-    TimeSheetPostResponse getTimeSheets(@RequestBody TimeSheetPostRequest timeSheetPostRequest);
+    ReceiveTimeSheetPostResponse getTimeSheets(@RequestBody ReceiveTimeSheetPostRequest receiveTimeSheetPostRequest);
 
 }
