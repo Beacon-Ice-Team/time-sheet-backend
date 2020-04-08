@@ -10,6 +10,8 @@ eureka:
 
 
 spring:
+  application:
+      name: gateway
   cloud:
     gateway:
       routes:
