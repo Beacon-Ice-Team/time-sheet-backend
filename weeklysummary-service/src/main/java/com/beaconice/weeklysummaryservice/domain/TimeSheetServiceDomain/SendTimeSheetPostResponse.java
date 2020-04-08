@@ -12,6 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 public class SendTimeSheetPostResponse {
 
-    private List<Day> dayList;
+    private List<Day> timeSheet;
 
 }
