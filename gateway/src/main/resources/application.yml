@@ -18,7 +18,7 @@ spring:
         - id: summary
           uri: lb://summary
           predicates:
-            - Path=/time-sheet-management/**
+            - Path=/weekly-summary/**
         - id: timesheet
           uri: lb://timesheet
           predicates:
