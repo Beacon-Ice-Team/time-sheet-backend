@@ -86,6 +86,7 @@ public class WeeklySummaryServiceImpl implements WeeklySummaryService {
                         .submissionStatus(submissionStatus)
                         .approvalStatus(NOT_APPROVED.getStr())
                         .comment("")
+                        .timeSheet(dayList)
                         .build();
                 weeklySummaryList.add(newOne);
                 timeSheetManagement.setWeeklySummary(weeklySummaryList);
