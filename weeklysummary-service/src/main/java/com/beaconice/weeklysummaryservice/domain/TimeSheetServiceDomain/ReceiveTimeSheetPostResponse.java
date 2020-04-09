@@ -13,6 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ReceiveTimeSheetPostResponse {
 
-    private List<Day> dayList;
+    private List<Day> timeSheet;
 
 }

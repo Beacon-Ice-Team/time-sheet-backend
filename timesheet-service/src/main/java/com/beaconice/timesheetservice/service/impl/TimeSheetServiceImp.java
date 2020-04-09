@@ -33,7 +33,7 @@ public class TimeSheetServiceImp implements TimeSheetService {
     public ToWeeklySummaryPostResponse getDefaultTimeSheet(FromWeeklySummaryPostRequest fromWeeklySummaryPostRequest) {
         ToWeeklySummaryPostResponse response = new ToWeeklySummaryPostResponse();
         TimeSheetManagement user = repository.findByUsername(fromWeeklySummaryPostRequest.getUsername()).orElse(null);
-        response.setDayList(user.getTimeSheet());
+        response.setTimeSheet(user.getTimeSheet());
         return response;
     }
 

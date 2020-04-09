@@ -10,5 +10,5 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ToWeeklySummaryPostResponse {
-    private List<Day> dayList;
+    private List<Day> timeSheet;
 }

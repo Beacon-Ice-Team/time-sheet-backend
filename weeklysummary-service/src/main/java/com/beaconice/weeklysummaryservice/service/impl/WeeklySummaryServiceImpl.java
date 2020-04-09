@@ -44,54 +44,64 @@ public class WeeklySummaryServiceImpl implements WeeklySummaryService {
     public List<WeeklySummaryRecord> getWeeklySummary(String username) {
         List<WeeklySummaryRecord> weeklySummaryRecordList = new ArrayList<>();
         TimeSheetManagement timeSheetManagement = timeSheetManagementRepository.findByUsername(username).orElse(null);
-
         ReceiveTimeSheetPostRequest receiveTimeSheetPostRequest = ReceiveTimeSheetPostRequest.builder()
                 .username(username)
                 .build();
         ReceiveTimeSheetPostResponse receiveTimeSheetPostResponse = timeSheetServiceClient.getTimeSheets(receiveTimeSheetPostRequest);
-        List<Day> dayList = receiveTimeSheetPostResponse.getDayList();
-
+        List<Day> dayList = receiveTimeSheetPostResponse.getTimeSheet();
         if (timeSheetManagement != null) {
             List<WeeklySummary> weeklySummaryList = timeSheetManagement.getWeeklySummary();
 
             for (WeeklySummary weeklySummary : weeklySummaryList) {
                 WeeklySummaryRecord weeklySummaryRecord = WeeklySummaryRecord.builder()
                         .weekEnding(weeklySummary.getWeekEnding())
-                        .totalHours(weeklySummary.getHours())
-                        .submissionStatus(weeklySummary.getSubmission())
-                        .approvalStatus(weeklySummary.getApproval())
+                        .hours(weeklySummary.getHours())
+                        .submissionStatus(weeklySummary.getSubmissionStatus())
+                        .approvalStatus(weeklySummary.getApprovalStatus())
                         .comment(weeklySummary.getComment())
                         .build();
                 weeklySummaryRecordList.add(weeklySummaryRecord);
             }
-        }
 
-        WeeklySummaryRecord weeklySummaryRecord = weeklySummaryRecordList.get(weeklySummaryRecordList.size() - 1);
-        if (weeklySummaryRecord.getSubmissionStatus() != NOT_STARTED.getStr()) {
-            String weekEnding = weeklySummaryRecord.getWeekEnding();
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-            LocalDate weekEndingLocalDate = LocalDate.parse(weekEnding, dateTimeFormatter);
-            LocalDate nextWeekEnding = weekEndingLocalDate.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
+            WeeklySummaryRecord weeklySummaryRecord = weeklySummaryRecordList.get(weeklySummaryRecordList.size() - 1);
+            if (!weeklySummaryRecord.getSubmissionStatus().equals(NOT_STARTED.getStr())) {
+                String weekEnding = weeklySummaryRecord.getWeekEnding();
+                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                LocalDate weekEndingLocalDate = LocalDate.parse(weekEnding, dateTimeFormatter);
+                LocalDate nextWeekEndingLocalDate = weekEndingLocalDate.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
+                String nextWeekEnding = nextWeekEndingLocalDate.format(dateTimeFormatter);
 
-            int totalHour = 0;
-            String submissionStatus = NOT_STARTED.getStr();
-            for (Day day : dayList) {
-                totalHour += day.getHours();
-                if (day.getHoliday() == 1 || day.getFloatDay() == 1 || day.getVacation() == 1) {
-                    submissionStatus = INCOMPLETE.getStr();
+                int totalHour = 0;
+                String submissionStatus = NOT_STARTED.getStr();
+                for (Day day : dayList) {
+                    totalHour += day.getHours();
+                    if (day.getHoliday() == 1 || day.getFloatDay() == 1 || day.getVacation() == 1) {
+                        submissionStatus = INCOMPLETE.getStr();
+                    }
                 }
+
+                WeeklySummary newOne = WeeklySummary.builder()
+                        .weekEnding(nextWeekEnding)
+                        .hours(totalHour)
+                        .submissionStatus(submissionStatus)
+                        .approvalStatus(NOT_APPROVED.getStr())
+                        .comment("")
+                        .build();
+                weeklySummaryList.add(newOne);
+                timeSheetManagement.setWeeklySummary(weeklySummaryList);
+                timeSheetManagementRepository.save(timeSheetManagement);
+
+                WeeklySummaryRecord newRecord = WeeklySummaryRecord.builder()
+                        .weekEnding(nextWeekEnding)
+                        .hours(totalHour)
+                        .submissionStatus(submissionStatus)
+                        .approvalStatus(NOT_APPROVED.getStr())
+                        .comment("")
+                        .build();
+
+                weeklySummaryRecordList.add(newRecord);
             }
-
-            WeeklySummaryRecord newRecord = WeeklySummaryRecord.builder()
-                    .weekEnding(nextWeekEnding.toString())
-                    .totalHours(totalHour)
-                    .submissionStatus(submissionStatus)
-                    .approvalStatus(NOT_APPROVED.getStr())
-                    .comment("")
-                    .build();
-            weeklySummaryRecordList.add(newRecord);
         }
-
         return weeklySummaryRecordList;
     }
 
