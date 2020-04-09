@@ -27,6 +27,7 @@ public class WeeklySummaryController {
         this.weeklySummaryService = weeklySummaryService;
     }
 
+
     @GetMapping(value = "/get")
     public ResponseEntity<Object> getWeeklySummary(HttpServletRequest httpServletRequest){
         ResponseEntity<Object> responseEntity;
