@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/time-sheet")
+@RequestMapping("/weekly-summary")
 @Api("Weekly Summary Controller")
 public class WeeklySummaryController {
 
@@ -27,7 +27,7 @@ public class WeeklySummaryController {
         this.weeklySummaryService = weeklySummaryService;
     }
 
-    @GetMapping(value = "/weekly-summary")
+    @GetMapping(value = "/get")
     public ResponseEntity<Object> getWeeklySummary(HttpServletRequest httpServletRequest){
         ResponseEntity<Object> responseEntity;
         WeeklySummaryGetResponse weeklySummaryGetResponse = new WeeklySummaryGetResponse();
@@ -37,7 +37,7 @@ public class WeeklySummaryController {
         weeklySummaryGetResponse.setWeeklySummaryRecordList(weeklySummaryRecordList);
 
         responseEntity = ResponseEntity.ok()
-        .body(weeklySummaryGetResponse);
+            .body(weeklySummaryGetResponse);
 
         return responseEntity;
     }

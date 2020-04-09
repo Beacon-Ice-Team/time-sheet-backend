@@ -11,7 +11,7 @@ public class WeeklySummaryRecord {
 
     private String weekEnding;
 
-    private int totalHours;
+    private int hours;
 
     private String submissionStatus;
 
