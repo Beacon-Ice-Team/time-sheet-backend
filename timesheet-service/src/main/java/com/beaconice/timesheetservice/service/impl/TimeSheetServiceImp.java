@@ -77,4 +77,11 @@ public class TimeSheetServiceImp implements TimeSheetService {
         user.setWeeklySummary(weeklySummaries);
         repository.save(user);
     }
+
+    @Override
+    public List<WeeklySummary> getWeeks(String username) {
+        TimeSheetManagement user = repository.findByUsername(username).orElse(null);
+        System.out.println(user.getWeeklySummary());
+        return user.getWeeklySummary();
+    }
 }

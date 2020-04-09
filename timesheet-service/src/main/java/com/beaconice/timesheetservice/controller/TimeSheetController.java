@@ -5,6 +5,7 @@ import com.beaconice.timesheetservice.client.SummaryClient;
 import com.beaconice.timesheetservice.domain.*;
 import com.beaconice.timesheetservice.entity.mongodoc.TimeSheet;
 import com.beaconice.timesheetservice.entity.mongodoc.TimeSheetManagement;
+import com.beaconice.timesheetservice.entity.mongodoc.WeeklySummary;
 import com.beaconice.timesheetservice.repository.TimeSheetRepository;
 import com.beaconice.timesheetservice.service.TimeSheetService;
 import io.swagger.annotations.Api;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -85,5 +87,19 @@ public class TimeSheetController {
         System.out.println(req.getWeekEnding());
         timeSheetServiceImpl.submitWeek(username, req.getWeekEnding(), req.getTimeSheet());
         return "submitted";
+    }
+
+    @GetMapping(value = "/weeks")
+    public ResponseEntity<Object> getWeeks(HttpServletRequest httpServletRequest) {
+        System.out.println("getting weeks");
+        ResponseEntity<Object> responseEntity = null;
+
+        TimeSheetGetResponse timeSheetGetResponse = new TimeSheetGetResponse();
+        String username = "test";
+
+        List<WeeklySummary> weeklySummary = timeSheetServiceImpl.getWeeks(username);
+        timeSheetGetResponse.setWeeklySummary(weeklySummary);
+        
+        return responseEntity.ok().body(timeSheetGetResponse);
     }
 }
