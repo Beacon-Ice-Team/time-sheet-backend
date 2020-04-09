@@ -49,10 +49,11 @@ public class TimeSheetController {
     }
 
     @PostMapping(value = "/update")
-    public TimeSheet changeDefaultWeekByUsername(@RequestBody TimeSheetManagement timeSheetManagement) { //testing get from backend
+    public TimeSheet changeDefaultWeekByUsername(@RequestBody SubmitTimeSheetRequest submitTimeSheetRequest) { //testing get from backend
         System.out.println("updating mongo");
-        TimeSheetManagement user = timeSheetRepository.findByUsername(timeSheetManagement.getUsername()).orElse(null);
-        user.setTimeSheet(timeSheetManagement.getTimeSheet());
+        String username = "test";
+        TimeSheetManagement user = timeSheetRepository.findByUsername(username).orElse(null);
+        user.setTimeSheet(submitTimeSheetRequest.getTimeSheet());
         timeSheetRepository.save(user);
         TimeSheet newDefaultWeek = new TimeSheet(user.getTimeSheet());
         return newDefaultWeek;
@@ -74,10 +75,11 @@ public class TimeSheetController {
     }
 
     @PostMapping(value = "/view")
-    public TimeSheet chooseWeek(@RequestParam String weekEnding) {
+    public TimeSheet chooseWeek(@RequestBody Request req) {
         String username = "test";
-        System.out.println(weekEnding);
-        TimeSheet timeSheet = timeSheetServiceImpl.getWeek(username, weekEnding);
+        System.out.println("getting new week");
+        System.out.println(req.getWeekEnding());
+        TimeSheet timeSheet = timeSheetServiceImpl.getWeek(username, req.getWeekEnding());
         return timeSheet;
     }
 
@@ -85,6 +87,7 @@ public class TimeSheetController {
     public String submitWeek(@RequestBody SubmitTimeSheetRequest req) {
         String username = "test";
         System.out.println(req.getWeekEnding());
+        System.out.println(req.getTimeSheet());
         timeSheetServiceImpl.submitWeek(username, req.getWeekEnding(), req.getTimeSheet());
         return "submitted";
     }
@@ -99,7 +102,7 @@ public class TimeSheetController {
 
         List<WeeklySummary> weeklySummary = timeSheetServiceImpl.getWeeks(username);
         timeSheetGetResponse.setWeeklySummary(weeklySummary);
-        
+
         return responseEntity.ok().body(timeSheetGetResponse);
     }
 }
