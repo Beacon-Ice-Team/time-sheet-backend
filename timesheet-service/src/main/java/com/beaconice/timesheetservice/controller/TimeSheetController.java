@@ -41,14 +41,14 @@ public class TimeSheetController {
         this.timeSheetServiceImpl = timeSheetServiceImpl;
     }
 
-    @PostMapping("/default")
+    @PostMapping(value = "/default")
     public ToWeeklySummaryPostResponse getDefaultWeekByUsername(@RequestBody FromWeeklySummaryPostRequest fromWeeklySummaryPostRequest) { //testing get from backend
         System.out.println("going to mongo");
 
         return timeSheetServiceImpl.getDefaultTimeSheet(fromWeeklySummaryPostRequest);
     }
 
-    @PostMapping("/update")
+    @PostMapping(value = "/update")
     public TimeSheet changeDefaultWeekByUsername(@RequestBody TimeSheetManagement timeSheetManagement) { //testing get from backend
         System.out.println("updating mongo");
         TimeSheetManagement user = timeSheetRepository.findByUsername(timeSheetManagement.getUsername()).orElse(null);
@@ -59,7 +59,7 @@ public class TimeSheetController {
     }
 
 
-    @GetMapping("/view")
+    @GetMapping(value = "/view")
     public ResponseEntity<Object> viewWeek(HttpServletRequest httpServletRequest) {
         ResponseEntity<Object> responseEntity = null;
         String username = "test";
@@ -73,7 +73,7 @@ public class TimeSheetController {
         return responseEntity.ok().body(timeSheetGetResponse);
     }
 
-    @PostMapping("/view")
+    @PostMapping(value = "/view")
     public TimeSheet chooseWeek(@RequestParam String weekEnding) {
         String username = "test";
         System.out.println(weekEnding);
@@ -81,7 +81,7 @@ public class TimeSheetController {
         return timeSheet;
     }
 
-    @PostMapping("/submit")
+    @PostMapping(value = "/submit")
     public String submitWeek(@RequestBody SubmitTimeSheetRequest req) {
         String username = "test";
         System.out.println(req.getWeekEnding());
@@ -89,11 +89,17 @@ public class TimeSheetController {
         return "submitted";
     }
 
-    @GetMapping("/weeks")
-    public List<WeeklySummary> getWeeks(HttpServletRequest httpServletRequest) {
+    @GetMapping(value = "/weeks")
+    public ResponseEntity<Object> getWeeks(HttpServletRequest httpServletRequest) {
+        System.out.println("getting weeks");
+        ResponseEntity<Object> responseEntity = null;
 
+        TimeSheetGetResponse timeSheetGetResponse = new TimeSheetGetResponse();
         String username = "test";
-        return timeSheetServiceImpl.getWeeks(username);
 
+        List<WeeklySummary> weeklySummary = timeSheetServiceImpl.getWeeks(username);
+        timeSheetGetResponse.setWeeklySummary(weeklySummary);
+        
+        return responseEntity.ok().body(timeSheetGetResponse);
     }
 }

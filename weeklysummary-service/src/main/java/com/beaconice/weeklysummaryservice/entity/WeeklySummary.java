@@ -16,15 +16,11 @@ public class WeeklySummary {
 
     private int hours;
 
-    private String submission;
+    private String submissionStatus;
 
-    private String approval;
+    private String approvalStatus;
 
     private String comment;
-
-    private String submissionTag;
-
-    private String commentTag;
 
     private List<Day> timeSheet;
 

@@ -27,7 +27,8 @@ public class WeeklySummaryController {
         this.weeklySummaryService = weeklySummaryService;
     }
 
-    @GetMapping(value = "/default")
+
+    @GetMapping(value = "/get")
     public ResponseEntity<Object> getWeeklySummary(HttpServletRequest httpServletRequest){
         ResponseEntity<Object> responseEntity;
         WeeklySummaryGetResponse weeklySummaryGetResponse = new WeeklySummaryGetResponse();
@@ -37,7 +38,7 @@ public class WeeklySummaryController {
         weeklySummaryGetResponse.setWeeklySummaryRecordList(weeklySummaryRecordList);
 
         responseEntity = ResponseEntity.ok()
-        .body(weeklySummaryGetResponse);
+            .body(weeklySummaryGetResponse);
 
         return responseEntity;
     }
