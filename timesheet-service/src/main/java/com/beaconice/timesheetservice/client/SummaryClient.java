@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface SummaryClient {
 
     @RequestLine("POST")
-    @RequestMapping(value = "/time-sheet/feign-time-sheet", consumes = "application/json", produces = "application/json")//need to add request sent object is (SaveSummaryRequest saveSummaryRequest)
+    @RequestMapping(value = "/weekly-summary/feign-time-sheet", consumes = "application/json", produces = "application/json")//need to add request sent object is (SaveSummaryRequest saveSummaryRequest)
     FromWeeklySummaryPostResponse getTimeSheetWeek(@RequestBody ToWeeklySummaryPostRequest toWeeklySummaryPostRequest);
 }

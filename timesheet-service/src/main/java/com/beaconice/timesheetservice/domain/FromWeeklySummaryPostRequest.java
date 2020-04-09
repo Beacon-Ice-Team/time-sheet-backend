@@ -4,10 +4,9 @@ import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@ToString
 @Builder
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class FromWeeklySummaryPostRequest {
     private String username;
 }
