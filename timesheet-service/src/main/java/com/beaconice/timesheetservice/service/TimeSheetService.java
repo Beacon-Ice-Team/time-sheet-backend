@@ -16,7 +16,7 @@ public interface TimeSheetService {
 
     TimeSheet getWeek(String username, String weekEnding);
 
-    void submitWeek(String username, String weekEnding, List<Day> timeSheet);
+    String submitWeek(String username, String weekEnding, List<Day> timeSheet);
 
     List<WeeklySummary> getWeeks(String username);
 }

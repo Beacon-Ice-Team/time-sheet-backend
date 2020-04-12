@@ -1,6 +1,7 @@
 package com.beaconice.timesheetservice.service.impl;
 
 import com.beaconice.timesheetservice.client.SummaryClient;
+import com.beaconice.timesheetservice.constant.SubmissionMessage;
 import com.beaconice.timesheetservice.domain.*;
 import com.beaconice.timesheetservice.entity.mongodoc.TimeSheet;
 import com.beaconice.timesheetservice.entity.mongodoc.TimeSheetManagement;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class TimeSheetServiceImp implements TimeSheetService {
+public class TimeSheetServiceImp implements TimeSheetService, SubmissionMessage {
     TimeSheetRepository repository;
 
     SummaryClient client;
@@ -66,16 +67,33 @@ public class TimeSheetServiceImp implements TimeSheetService {
     }
 
     @Override
-    public void submitWeek(String username, String weekEnding, List<Day> timeSheet) {
+    public String submitWeek(String username, String weekEnding, List<Day> timeSheet) {
+        boolean foundWeek = false;
+        int subFloat = 0;
+        int subVacation= 0;
+        for(int i = 0; i < timeSheet.size()-1; i++) {
+            subFloat += timeSheet.get(i).getFloatDay();
+            subVacation += timeSheet.get(i).getVacation();
+        }
         TimeSheetManagement user = repository.findByUsername(username).orElse(null);
+        if(subFloat > user.getDaysOff().getFloatDay() || subVacation > user.getDaysOff().getVacation()) {
+            return ERROR_INVALID_DAYS_OFF;
+        }
         List<WeeklySummary> weeklySummaries = user.getWeeklySummary();
         for(int i = 0; i < weeklySummaries.size(); i++) {
+            System.out.println(i + " " + weeklySummaries.size());
             if(weeklySummaries.get(i).getWeekEnding().equals(weekEnding)) {
+                System.out.println("date matched " + weeklySummaries.get(i).getWeekEnding());
                 weeklySummaries.get(i).setTimeSheet(timeSheet);
+                foundWeek = true;
+            }
+            if(!foundWeek && i == weeklySummaries.size()-1){
+                return ERROR_INVALID_DATE;
             }
         }
         user.setWeeklySummary(weeklySummaries);
-        repository.save(user);
+//        repository.save(user);
+        return SUCCESS;
     }
 
     @Override
@@ -84,4 +102,6 @@ public class TimeSheetServiceImp implements TimeSheetService {
         System.out.println(user.getWeeklySummary());
         return user.getWeeklySummary();
     }
+
+
 }

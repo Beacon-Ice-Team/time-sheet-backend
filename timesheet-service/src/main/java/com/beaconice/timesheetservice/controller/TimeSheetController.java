@@ -84,12 +84,13 @@ public class TimeSheetController {
     }
 
     @PostMapping(value = "/submit")
-    public String submitWeek(@RequestBody SubmitTimeSheetRequest req) {
+    public SubmissionResponse submitWeek(@RequestBody SubmitTimeSheetRequest req) {
         String username = "test";
         System.out.println(req.getWeekEnding());
         System.out.println(req.getTimeSheet());
-        timeSheetServiceImpl.submitWeek(username, req.getWeekEnding(), req.getTimeSheet());
-        return "submitted";
+        SubmissionResponse response = new SubmissionResponse();
+        response.setMessage(timeSheetServiceImpl.submitWeek(username, req.getWeekEnding(), req.getTimeSheet()));
+        return response;
     }
 
     @GetMapping(value = "/weeks")
