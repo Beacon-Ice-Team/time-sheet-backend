@@ -35,7 +35,8 @@ public class TimeSheetManagement {
 
     private Object emergency;
 
-    private Object daysOff;
+    private DaysOff daysOff;
+
 
 
 
